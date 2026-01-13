@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+
+# Entornos Virtuales
+venv/
+env/
+
+# Configuración de usuario
+config.json
+
+# Compilación (PyInstaller)
+build/
+dist/
+*.spec
+
+# Logs y sistemas
+*.log
+.DS_Store
