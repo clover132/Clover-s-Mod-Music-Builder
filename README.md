@@ -2,9 +2,8 @@
 
 ![Version](https://img.shields.io/badge/version-1.0%20Beta-blue) ![Python](https://img.shields.io/badge/Built%20with-Python%20%26%20CustomTkinter-yellow)
 
-Una herramienta moderna y visual para gestionar y crear mods de música para **The Binding of Isaac: Repentance**. Olvídate de editar archivos XML a mano o renombrar carpetas.
-
-Desarrollado por **Clover (Mateo)**.
+Una herramienta moderna y visual para gestionar y modificar la música en **The Binding of Isaac: Repentance/Repentance+**.
+Desarrollado por **Clover**.
 <img width="1113" height="785" alt="isaac_screen_mod_builder" src="https://github.com/user-attachments/assets/305f75e5-11e2-45ff-b0e8-7345c3fe1142" />
 
 ## ✨ Características
