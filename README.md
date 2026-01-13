@@ -18,7 +18,7 @@ Una herramienta moderna y visual para gestionar y modificar la música en **The 
 ## 🚀 Instalación (Para Usuarios)
 
 1.  Ve a la sección de **[Releases](../../releases)** de este repositorio.
-2.  Descarga el archivo `IsaacMusicModder.exe`.
+2.  Descarga el archivo `CloversModMusicBuilder.exe`.
 3.  Colócalo en una carpeta vacía en tu escritorio.
 4.  Ejecútalo y sigue las instrucciones para seleccionar la carpeta del Mod.
 
@@ -28,7 +28,7 @@ Si quieres contribuir al código o ejecutarlo desde Python:
 
 1.  Clona el repositorio:
     ```bash
-    git clone [https://github.com/TU_USUARIO/IsaacMusicBuilder.git](https://github.com/TU_USUARIO/IsaacMusicBuilder.git)
+    git clone https://github.com/clover132/Clover-s-Mod-Music-Builder.git
     ```
 2.  Instala las dependencias:
     ```bash
