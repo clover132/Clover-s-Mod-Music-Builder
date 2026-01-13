@@ -1,25 +1,24 @@
 import customtkinter as ctk
 from tkinterdnd2 import TkinterDnD
-from tkinter import filedialog, messagebox # <--- IMPORTANTE: messagebox
+from tkinter import filedialog, messagebox 
 import os
 import sys
 
 from src.xml_handler import MusicXMLHandler
 from src.models import Track
-from src.mod_manager import ModManager     # <--- IMPORTANTE
-from src.file_handler import FileHandler   # <--- IMPORTANTE
+from src.mod_manager import ModManager
+from src.file_handler import FileHandler  
 
 def resource_path(relative_path):
     """ Obtiene la ruta absoluta al recurso, funcione como script o como exe frozen """
     try:
-        # PyInstaller crea una carpeta temporal en _MEIPASS
         base_path = sys._MEIPASS
     except Exception:
         base_path = os.path.abspath(".")
 
     return os.path.join(base_path, relative_path)
 
-# ... (La clase SongRow se queda IGUAL, no la toques) ...
+# ...
 class SongRow(ctk.CTkFrame):
     def __init__(self, parent, track: Track):
         super().__init__(parent)
@@ -69,7 +68,7 @@ class SongRow(ctk.CTkFrame):
         # EL BOTÓN NUEVO "X" PARA BORRAR INTRO
         self.btn_del_intro = ctk.CTkButton(
             self.intro_row, 
-            text="✕", # Carácter X bonito
+            text="✕", # Carácter X
             width=20, 
             height=20, 
             fg_color="#C0392B", # Rojo oscuro
@@ -108,7 +107,6 @@ class SongRow(ctk.CTkFrame):
         """Borra el intro de la memoria y actualiza la interfaz"""
         self.track.intro = None
         self.lbl_intro.configure(text="Intro: (Ninguno)", text_color="#858585")
-        # No necesitamos borrar el archivo físico, simplemente al guardar el XML
         # ya no incluirá el atributo 'intro="..."'.
 
     def on_change_loop(self):
@@ -126,11 +124,9 @@ class SongRow(ctk.CTkFrame):
 
 class MusicModApp(ctk.CTk, TkinterDnD.DnDWrapper):
     
-    # HE COMBINADO TUS LISTAS AQUÍ.
-    # Si quieres editar los Jefes, ¡tienen que estar en esta lista!
     TARGET_IDS = [
         1, 2, 3, 4, 5, 6, 7, 8, 
-        9, 20, 21, 26, 27, 28,  # <--- Agregados los Jefes para que salgan en la UI
+        9, 20, 21, 26, 27, 28,  # <--- Agregados los ID's music del juego
         10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 
         30, 31, 33, 34, 35, 36, 
         63, 102
@@ -169,14 +165,13 @@ class MusicModApp(ctk.CTk, TkinterDnD.DnDWrapper):
         # 1. Intentar cargar la configuración existente
         mod_path = manager.load_mod_path()
         
-        # --- NUEVA LÓGICA: PRIMERA VEZ ---
         if not mod_path:
-            # Si es la primera vez (no hay config), pedimos la carpeta INMEDIATAMENTE
+            # Si es la primera vez (no hay config)
             messagebox.showinfo("Bienvenido", "Para comenzar, por favor selecciona la carpeta raíz del Mod.\n(Clover's Mod Music Builder)")
             mod_path = manager.ask_for_directory()
             
             if not mod_path:
-                # Si el usuario le da a "Cancelar", cerramos la app o mostramos error
+                # Si el usuario le da a "Cancelar", cerrar la app
                 messagebox.showerror("Error", "Es necesario seleccionar una carpeta de mod para continuar.\n")
                 self.destroy() # Cierra la ventana
                 return
@@ -190,12 +185,12 @@ class MusicModApp(ctk.CTk, TkinterDnD.DnDWrapper):
 
         # 3. Decidir qué cargar
         if os.path.exists(ruta_xml_mod):
-            # CASO A: El usuario ya tiene un music.xml en su mod -> Lo editamos
-            print(f"📂 Editando mod existente: {ruta_xml_mod}")
+            # CASO A: El usuario ya tiene un music.xml en su mod
+            print(f"Editando mod existente: {ruta_xml_mod}")
             target_xml = ruta_xml_mod
             source_type = "EXISTING"
         elif os.path.exists(ruta_xml_interna):
-            # CASO B: Carpeta nueva/vacía -> Usamos la plantilla interna para empezar de cero
+            # CASO B: Carpeta nueva/vacía plantilla interna para empezar de cero
             print(f"✨ Creando nuevo mod (Usando plantilla interna)")
             target_xml = ruta_xml_interna
             source_type = "TEMPLATE"
@@ -205,7 +200,7 @@ class MusicModApp(ctk.CTk, TkinterDnD.DnDWrapper):
             try:
                 self.all_tracks = handler.parse(target_xml)
                 
-                # Si estamos usando la plantilla, reseteamos las rutas absolutas para evitar problemas
+                # Si usando la plantilla, resetar las rutas absolutas para evitar problemas
                 # (Opcional, pero recomendado para limpieza)
                 if source_type == "TEMPLATE":
                     for t in self.all_tracks:
@@ -242,13 +237,13 @@ class MusicModApp(ctk.CTk, TkinterDnD.DnDWrapper):
         copier = FileHandler()
         
         # --- CAMBIO CRÍTICO AQUÍ ---
-        # Procesamos self.all_tracks (TODOS) en lugar de solo los visibles
+        # Procesar self.all_tracks (TODOS) en lugar de solo los visibles
         files_copied = copier.process_mod(self.all_tracks, mod_path)
         
         xml_writer = MusicXMLHandler()
         xml_dest = os.path.join(mod_path, "resources", "music.xml")
         
-        # Guardamos TODOS
+        # Guardamos
         success = xml_writer.write(self.all_tracks, xml_dest)
         
         if success:
