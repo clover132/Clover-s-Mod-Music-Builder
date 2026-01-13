@@ -5,26 +5,23 @@
 Una herramienta moderna y visual para gestionar y crear mods de música para **The Binding of Isaac: Repentance**. Olvídate de editar archivos XML a mano o renombrar carpetas.
 
 Desarrollado por **Clover (Mateo)**.
-
-![Screenshot](src/splash.png)
-*(Aquí podrías poner una captura de la interfaz más adelante)*
+<img width="1113" height="785" alt="isaac_screen_mod_builder" src="https://github.com/user-attachments/assets/305f75e5-11e2-45ff-b0e8-7345c3fe1142" />
 
 ## ✨ Características
 
-* **Interfaz Moderna:** GUI oscura y limpia basada en CustomTkinter.
-* **Drag & Drop:** (Próximamente) Soporte para arrastrar archivos.
+* **Interfaz Moderna:** GUI oscura y limpia
+* **Seleccion archivos:** Drag & Drop: (Próximamente) 
 * **Gestión Inteligente de Audio:**
     * Soporte completo para **Intro + Loop**.
     * Validación automática de archivos `.ogg`.
-* **Ruteo Automático:** Detecta si la canción es para un Jefe y la mueve automáticamente a la carpeta `Fights/`.
-* **Portable:** Genera un archivo `music.xml` limpio y una estructura de carpetas lista para subir a la Workshop.
+* **Portable:** Genera un archivo `music.xml` limpio y una estructura de carpetas lista para subir a la Workshop para subir tu paquete de musica a la workshop (opcional).
 
 ## 🚀 Instalación (Para Usuarios)
 
 1.  Ve a la sección de **[Releases](../../releases)** de este repositorio.
 2.  Descarga el archivo `IsaacMusicModder.exe`.
 3.  Colócalo en una carpeta vacía en tu escritorio.
-4.  Ejecútalo y sigue las instrucciones para seleccionar la carpeta de tu Mod.
+4.  Ejecútalo y sigue las instrucciones para seleccionar la carpeta del Mod.
 
 ## 🛠️ Instalación (Para Desarrolladores)
 
