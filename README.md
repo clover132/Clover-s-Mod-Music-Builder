@@ -1,4 +1,4 @@
-# 🎵 Isaac Music Builder (Repentance)
+# 🎵 Isaac Music Builder (Repentance+)
 
 ![Version](https://img.shields.io/badge/version-1.0%20Beta-blue) ![Python](https://img.shields.io/badge/Built%20with-Python%20%26%20CustomTkinter-yellow)
 
