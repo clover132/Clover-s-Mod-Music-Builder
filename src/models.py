@@ -10,34 +10,20 @@ class SubLayer:
 # --- Estructura Principal para <track> ---
 @dataclass
 class Track:
-    # 1. Identificadores Obligatorios
-    id: int
-    name: str          # El nombre legible (ej: "Basement")
-    
-    # 2. Archivos de Audio Principales
-    path: str          # El loop principal
-    intro: Optional[str] = None  # La intro (si tiene)
-    loop: bool = True
-    
-    # 3. Control de Volumen
-    mul: float = 1.0   # Multiplicador de volumen global
-    
-    # 4. Atributos de Capas (Inline - Cuando la capa se define en la misma linea)
-    layer_path: Optional[str] = None 
-    layer_intro: Optional[str] = None
-    layer_mul: float = 1.0
-    
-    # 5. Configuración de Mezcla
-    layer_mode: int = 1         # 1=Normal, 2=Capas dinámicas
-    layer_fade_speed: float = 1.0 # Velocidad de transición entre capas
-    
-    # 6. Sub-Capas (Nodos hijos)
-    sub_layers: List[SubLayer] = field(default_factory=list)
+    def __init__(self, id, name, path, intro=None, loop="true", **kwargs):
+        # 1. Datos que nuestra App NECESITA leer y editar
+        self.id = id
+        self.name = name
+        self.path = path
+        self.intro = intro
+        
+        # 2. Datos críticos que debemos preservar pero quizás no editamos siempre
+        self.loop = loop  # Por defecto "true" para evitar el silencio
+        
+        # 3. El "Bolsillo Mágico": Aquí guardamos todo lo demás.
+        # layermode, layerfadespeed, volume, y cosas que ni conocemos.
+        # **kwargs captura cualquier atributo extra que venga del XML.
+        self.extra_attributes = kwargs
 
-    def __post_init__(self):
-        """
-        Este método se ejecuta automáticamente después del constructor.
-        Sirve para validar datos o convertir tipos si es necesario.
-        """
-        # ID sea siempre un entero
-        self.id = int(self.id)
+    def __repr__(self):
+        return f"Track({self.id}, {self.name})"
