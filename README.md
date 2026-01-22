@@ -12,7 +12,7 @@ Herramienta moderna y visual para gestionar y modificar la música en **The Bind
 * **Seleccion archivos:** Drag & Drop: (Próximamente) 
 * **Gestión Inteligente de Audio:**
     * Soporte completo para **Intro + Loop**.
-    * Validación automática de archivos `.ogg`.
+    * Validación de archivos `.ogg`.
 * **Portable:** Genera un archivo `music.xml` limpio y una estructura de carpetas lista para subir a la Workshop tu paquete de musica **(Opcional)**.
 
 ## 🚀 Instalación (Para Usuarios)
